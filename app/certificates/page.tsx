@@ -64,14 +64,16 @@ export default function CertificatesPage() {
           >
             <div className="relative">
               <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="bg-white/5 border border-white/10 rounded-full px-6 py-3 pr-12 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none backdrop-blur-sm"
-              >
-                <option value="All">All Categories</option>
+  value={selectedCategory}
+  onChange={(e) => setSelectedCategory(e.target.value)}
+  className="bg-gray-900 border border-white/10 rounded-full px-6 py-3 pr-12 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none backdrop-blur-sm"
+>
+                <option value="All" className="bg-gray-900 text-white">All Categories</option>
                 {categories.map((category) => (
-                  <option key={category} value={category}>{category}</option>
-                ))}
+  <option key={category} value={category} className="bg-gray-900 text-white">
+    {category}
+  </option>
+))}
               </select>
               <ChevronDown size={20} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
             </div>
