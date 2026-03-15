@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import CustomCursor from "./components/CustomCursor";
+import ClientEnhancements from "./components/ClientEnhancements";
 import { Analytics } from "@vercel/analytics/next"
 
 const poppins = Poppins({
@@ -13,7 +13,11 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "CertFinder - Discover Online Certificates",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://certfinder.vercel.app"),
+  title: {
+    default: "CertFinder - Discover Online Certificates",
+    template: "%s | CertFinder",
+  },
   description: "Discover valuable online certificates from trusted platforms. Verify your achievements and build your portfolio.",
   keywords: ["online certificates", "cybersecurity", "courses", "education", "portfolio", "IT certifications"],
   authors: [{ name: "Abhishek Sharma" }],
@@ -43,7 +47,7 @@ export default function RootLayout({
         className={`${poppins.variable} antialiased bg-[#0e0e1a] text-white min-h-screen flex flex-col`}
       >
         <Navbar />
-        <CustomCursor />
+        <ClientEnhancements />
         <main className="flex-1 pt-20">
           {children}
         </main>

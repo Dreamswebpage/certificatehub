@@ -4,12 +4,10 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function CustomCursor() {
-  const [mounted, setMounted] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -37,11 +35,7 @@ export default function CustomCursor() {
     };
   }, []);
 
-  // Avoid hydration mismatch by not rendering anything until mounted
-  if (!mounted) return null;
-
-  // Hide on small screens where touch is used instead of a mouse
-  if (window.innerWidth < 768) {
+  if (typeof window === "undefined" || window.innerWidth < 768) {
     return null;
   }
 

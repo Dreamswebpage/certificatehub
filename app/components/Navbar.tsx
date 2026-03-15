@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { User, LogIn, LogOut, Menu, X, ShieldAlert } from "lucide-react";
+import { User, LogIn, LogOut, Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,9 +20,7 @@ export default function Navbar() {
 
   const pathname = usePathname();
   const router = useRouter();
-
-  // Hide nav on admin page 
-  if (pathname.startsWith('/admin')) return null;
+  const isAdminPage = pathname.startsWith("/admin");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,12 +73,14 @@ export default function Navbar() {
       } else {
         alert(data.error || "Authentication failed");
       }
-    } catch (error) {
+    } catch {
       alert("Something went wrong");
     } finally {
       setLoading(false);
     }
   };
+
+  if (isAdminPage) return null;
 
   return (
     <>

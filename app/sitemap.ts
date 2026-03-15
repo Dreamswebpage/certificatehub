@@ -1,7 +1,14 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
+import { prisma } from "@/lib/prisma";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://certfinder.vercel.app"
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://certfinder.vercel.app";
+  const certificates = await prisma.certificate.findMany({
+    select: {
+      slug: true,
+      updatedAt: true,
+    },
+  });
 
   return [
     {
@@ -31,6 +38,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/disclaimer`,
       lastModified: new Date(),
-    }
-  ]
+    },
+    ...certificates.map((certificate) => ({
+      url: `${baseUrl}/certificates/${certificate.slug}`,
+      lastModified: certificate.updatedAt,
+    })),
+  ];
 }

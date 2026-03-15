@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
               <Database className="text-blue-400" /> How We Use Your Information
             </h2>
             <p className="text-gray-300 leading-relaxed">
-              The information we collect may be used for responding to your inquiries, improving our website, and providing better user experience. We do not sell, trade, or rent users' personal information to others.
+              The information we collect may be used for responding to your inquiries, improving our website, and providing better user experience. We do not sell, trade, or rent users&apos; personal information to others.
             </p>
           </div>
 
