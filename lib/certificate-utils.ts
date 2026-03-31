@@ -15,6 +15,7 @@ export type CertificateRecord = {
     description?: string | null;
   } | null;
   duration: string | null;
+  viewCount?: number;
   pricingType: PricingType | string;
   courseContent: string | null;
   benefits: string | null;

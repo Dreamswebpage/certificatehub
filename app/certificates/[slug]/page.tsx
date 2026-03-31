@@ -59,6 +59,15 @@ export default async function CertificateDetailPage({ params }: CertificateDetai
     notFound();
   }
 
+  await prisma.certificate.update({
+    where: { id: certificate.id },
+    data: {
+      viewCount: {
+        increment: 1,
+      },
+    },
+  });
+
   const courseContent = splitTextarea(certificate.courseContent);
   const benefits = splitTextarea(certificate.benefits);
   const relatedFilters = certificate.categoryId

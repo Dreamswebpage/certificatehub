@@ -42,6 +42,7 @@ model Certificate {
   categoryId     String?
   categoryRecord Category? @relation("CertificateCategory", fields: [categoryId], references: [id], onDelete: SetNull)
   duration       String?
+  viewCount      Int      @default(0)
   pricingType    String   @default("FREE")
   courseContent  String?
   benefits       String?
