@@ -4,6 +4,8 @@ import { ArrowRight, Clock3, FolderTree, Search, ShieldCheck } from "lucide-reac
 import { prisma } from "@/lib/prisma";
 import { formatUrl } from "@/lib/certificate-utils";
 
+export const dynamic = "force-dynamic";
+
 const homeTitle = "Free Cyber Security Certification 2026 | Cisco, Google, AWS Certificates";
 const homeDescription =
   "Discover free and paid certificates with full course details, official links, duration, benefits, and SEO-friendly certificate pages for Cisco, Google, AWS, and more.";
@@ -35,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [popularCertificates, latestBlogs, categories, totalCertificates] = await Promise.all([
+  const [popularCertificates, latestBlogs, categories, totalCertificates, totalPublishedBlogs] = await Promise.all([
     prisma.certificate.findMany({
       include: {
         categoryRecord: true,
@@ -60,6 +62,11 @@ export default async function HomePage() {
       take: 6,
     }),
     prisma.certificate.count(),
+    prisma.blog.count({
+      where: {
+        published: true,
+      },
+    }),
   ]);
 
   return (
@@ -103,7 +110,7 @@ export default async function HomePage() {
                     <p className="mt-2 text-sm text-slate-400">Certificates indexed</p>
                   </div>
                   <div>
-                    <p className="text-4xl font-black">{latestBlogs.length}+</p>
+                    <p className="text-4xl font-black">{totalPublishedBlogs}+</p>
                     <p className="mt-2 text-sm text-slate-400">Fresh blog posts</p>
                   </div>
                   <div>

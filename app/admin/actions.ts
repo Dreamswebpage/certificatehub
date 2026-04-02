@@ -143,6 +143,7 @@ export async function saveCategoryAction(formData: FormData) {
   revalidatePath("/admin/categories");
   revalidatePath("/admin/certificates");
   revalidatePath("/certificates");
+  revalidatePath("/");
   revalidatePath("/category", "layout");
   redirect("/admin/categories");
 }
@@ -168,6 +169,7 @@ export async function deleteCategoryAction(formData: FormData) {
   revalidatePath("/admin/categories");
   revalidatePath("/admin/certificates");
   revalidatePath("/certificates");
+  revalidatePath("/");
   redirect("/admin/categories");
 }
 
@@ -237,6 +239,7 @@ export async function saveCertificateAction(formData: FormData) {
 
   revalidatePath("/admin/certificates");
   revalidatePath("/certificates");
+  revalidatePath("/");
   revalidatePath("/sitemap.xml");
   redirect("/admin/certificates");
 }
@@ -253,6 +256,7 @@ export async function deleteCertificateAction(formData: FormData) {
 
   revalidatePath("/admin/certificates");
   revalidatePath("/certificates");
+  revalidatePath("/");
   revalidatePath("/sitemap.xml");
   redirect("/admin/certificates");
 }
@@ -298,6 +302,7 @@ export async function saveBlogAction(formData: FormData) {
 
   revalidatePath("/admin/blog");
   revalidatePath("/blog");
+  revalidatePath("/");
   revalidatePath("/sitemap.xml");
   redirect("/admin/blog");
 }
@@ -314,6 +319,7 @@ export async function deleteBlogAction(formData: FormData) {
 
   revalidatePath("/admin/blog");
   revalidatePath("/blog");
+  revalidatePath("/");
   revalidatePath("/sitemap.xml");
   redirect("/admin/blog");
 }
@@ -331,6 +337,7 @@ export async function toggleBlogPublishAction(formData: FormData) {
 
   revalidatePath("/admin/blog");
   revalidatePath("/blog");
+  revalidatePath("/");
   redirect("/admin/blog");
 }
 
